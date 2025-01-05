@@ -21,7 +21,7 @@ namespace Deraa.DAL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Deraa.DAL.Models.Item", b =>
+            modelBuilder.Entity("Deraa.DAL.Models.Apartment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace Deraa.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.ToTable("Apartments");
                 });
 #pragma warning restore 612, 618
         }

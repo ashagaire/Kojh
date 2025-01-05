@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace backend.Validators
 {
-    public class ItemValidator : AbstractValidator<Item>
+    public class ItemValidator : AbstractValidator<Apartment>
     {
         public ItemValidator()
         {

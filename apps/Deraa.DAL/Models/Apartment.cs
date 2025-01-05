@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Deraa.DAL.Models
 {
-    public class Item
+    public class Apartment
     {
         public int Id { get; set; }
         public string Name { get; set; }

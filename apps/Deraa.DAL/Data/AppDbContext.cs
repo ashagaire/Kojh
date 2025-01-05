@@ -15,7 +15,7 @@ namespace Deraa.DAL.Data
         {
         }
 
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Apartment> Apartments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

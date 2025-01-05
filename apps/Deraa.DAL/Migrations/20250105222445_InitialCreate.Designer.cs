@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Deraa.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250104133224_InitialCreate")]
+    [Migration("20250105222445_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace Deraa.DAL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Deraa.DAL.Models.Item", b =>
+            modelBuilder.Entity("Deraa.DAL.Models.Apartment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace Deraa.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.ToTable("Apartments");
                 });
 #pragma warning restore 612, 618
         }

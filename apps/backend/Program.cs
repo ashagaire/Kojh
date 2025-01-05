@@ -1,8 +1,13 @@
 using backend.Services;
 using Deraa.DAL.Data;
+using Deraa.DAL.Data.Interfaces;
+using Deraa.DAL.Data.Repositories;
 using FluentValidation.AspNetCore;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
+using backend.MapProfiles;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +24,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 //Add Item Services
 builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IApartmentRepository, ApartmentRepository>();
+
 
 // Add FluentValidation
 builder.Services.AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
+
+// Mappers
+builder.Services.AddSingleton<IMapper, Mapper>();
+MappingConfig.RegisterMappings();
 
 var app = builder.Build();
 

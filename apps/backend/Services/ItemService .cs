@@ -13,20 +13,20 @@ namespace backend.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Item>> GetAllAsync() => await _context.Items.ToListAsync();
+        public async Task<IEnumerable<Apartment>> GetAllAsync() => await _context.Apartments.ToListAsync();
 
-        public async Task<Item?> GetByIdAsync(int id) => await _context.Items.FindAsync(id);
+        public async Task<Apartment?> GetByIdAsync(int id) => await _context.Apartments.FindAsync(id);
 
-        public async Task<Item> CreateAsync(Item item)
+        public async Task<Apartment> CreateAsync(Apartment item)
         {
-            _context.Items.Add(item);
+            _context.Apartments.Add(item);
             await _context.SaveChangesAsync();
             return item;
         }
 
-        public async Task<Item?> UpdateAsync(int id, Item item)
+        public async Task<Apartment?> UpdateAsync(int id, Apartment item)
         {
-            var existingItem = await _context.Items.FindAsync(id);
+            var existingItem = await _context.Apartments.FindAsync(id);
             if (existingItem == null) return null;
 
             existingItem.Name = item.Name;
@@ -39,10 +39,10 @@ namespace backend.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var item = await _context.Items.FindAsync(id);
+            var item = await _context.Apartments.FindAsync(id);
             if (item == null) return false;
 
-            _context.Items.Remove(item);
+            _context.Apartments.Remove(item);
             await _context.SaveChangesAsync();
             return true;
         }
