@@ -6,7 +6,8 @@ using FluentValidation.AspNetCore;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using backend.MapProfiles;
-
+using Kojh.DAL.Models;
+using Kojh.DAL.Seed;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add services to the container.
+// Add DbConnection
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Kojh.DAL")));
 
@@ -35,9 +36,18 @@ builder.Services.AddFluentValidationAutoValidation()
 builder.Services.AddSingleton<IMapper, Mapper>();
 MappingConfig.RegisterMappings();
 
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// SEED DATABASE HERE
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    DbDevSeeder.Seed(dbContext); 
+}
+
+// Swagger only in dev
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
