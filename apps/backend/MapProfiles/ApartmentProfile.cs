@@ -1,5 +1,5 @@
-﻿using backend.Features.ApartmentFeatures.Response;
-using Deraa.DAL.Models;
+﻿using backend.Features.ItemFeatures.Response;
+using Kojh.DAL.Models;
 using Mapster;
 
 namespace backend.MapProfiles
@@ -8,14 +8,14 @@ namespace backend.MapProfiles
     {
         public static void RegisterMappings()
         {
-            TypeAdapterConfig<Apartment, ApartmentResponse>
+            TypeAdapterConfig<Item, ItemResponse>
                 .NewConfig()
                 .Map(dest => dest.Id, src => src.Id)
                 .Map(dest => dest.Name, src => src.Name)
                 .Map(dest => dest.Description, src => src.Description)
                 .Map(dest => dest.Price, src => src.Price);
 
-            TypeAdapterConfig<ApartmentResponse, Apartment>
+            TypeAdapterConfig<ItemResponse, Item>
                 .NewConfig()
                 .Map(dest => dest.Id, src => src.Id)
                 .Map(dest => dest.Name, src => src.Name)

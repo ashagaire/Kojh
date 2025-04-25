@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Deraa.DAL.Models;
+using Kojh.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Deraa.DAL.Data
+namespace Kojh.DAL.Data
 {
     public class AppDbContext : DbContext
     {
@@ -15,7 +15,7 @@ namespace Deraa.DAL.Data
         {
         }
 
-        public DbSet<Apartment> Apartments { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

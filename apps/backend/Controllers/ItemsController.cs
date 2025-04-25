@@ -1,5 +1,5 @@
 ﻿using backend.Services;
-using Deraa.DAL.Models;
+using Kojh.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -26,10 +26,10 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Apartment item) => Ok(await _itemService.CreateAsync(item));
+        public async Task<IActionResult> Create(Item item) => Ok(await _itemService.CreateAsync(item));
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Apartment item)
+        public async Task<IActionResult> Update(int id, Item item)
         {
             var updatedItem = await _itemService.UpdateAsync(id, item);
             return updatedItem == null ? NotFound() : Ok(updatedItem);

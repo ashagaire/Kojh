@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Deraa.DAL.Migrations
+namespace Kojh.DAL.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -12,7 +12,7 @@ namespace Deraa.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Apartments",
+                name: "Items",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -23,7 +23,7 @@ namespace Deraa.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Apartments", x => x.Id);
+                    table.PrimaryKey("PK_Items", x => x.Id);
                 });
         }
 
@@ -31,7 +31,7 @@ namespace Deraa.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Apartments");
+                name: "Items");
         }
     }
 }

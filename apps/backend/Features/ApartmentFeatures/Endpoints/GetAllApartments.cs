@@ -1,30 +1,30 @@
 ﻿using Ardalis.ApiEndpoints;
-using backend.Features.ApartmentFeatures.Response;
-using Deraa.DAL.Data.Interfaces;
+using backend.Features.ItemFeatures.Response;
+using Kojh.DAL.Data.Interfaces;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend.Features.ApartmentFeatures.Endpoints
+namespace backend.Features.ItemFeatures.Endpoints
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GetAllApartments : EndpointBaseAsync.WithoutRequest.WithActionResult<List<ApartmentResponse>>
+    public class GetAllItems : EndpointBaseAsync.WithoutRequest.WithActionResult<List<ItemResponse>>
     {
-        private readonly IApartmentRepository _apartmentRepository;
+        private readonly IItemRepository _ItemRepository;
         private readonly IMapper _mapper;
 
-        public GetAllApartments(IApartmentRepository ApartmentRepository, IMapper mapper)
+        public GetAllItems(IItemRepository ItemRepository, IMapper mapper)
         {
-            _apartmentRepository = ApartmentRepository;
+            _ItemRepository = ItemRepository;
             _mapper = mapper;
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public override async Task<ActionResult<List<ApartmentResponse>>> HandleAsync(CancellationToken ct = default)
+        public override async Task<ActionResult<List<ItemResponse>>> HandleAsync(CancellationToken ct = default)
         {
-            var apartments = await _apartmentRepository.GetAllAsync(ct);
-            return Ok(_mapper.Map<List<ApartmentResponse>>(apartments));
+            var Items = await _ItemRepository.GetAllAsync(ct);
+            return Ok(_mapper.Map<List<ItemResponse>>(Items));
         }
     }
 }

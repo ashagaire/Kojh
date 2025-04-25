@@ -1,9 +1,9 @@
-﻿using Deraa.DAL.Models;
+﻿using Kojh.DAL.Models;
 using FluentValidation;
 
 namespace backend.Validators
 {
-    public class ItemValidator : AbstractValidator<Apartment>
+    public class ItemValidator : AbstractValidator<Item>
     {
         public ItemValidator()
         {

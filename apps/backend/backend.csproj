@@ -24,11 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Deraa.DAL\Deraa.DAL.csproj" />
+    <ProjectReference Include="..\Kojh.DAL\Kojh.DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\ApartmentFeatures\Request\" />
+    <Folder Include="Features\ItemFeatures\Request\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>
 

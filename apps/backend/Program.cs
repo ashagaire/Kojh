@@ -1,7 +1,7 @@
 using backend.Services;
-using Deraa.DAL.Data;
-using Deraa.DAL.Data.Interfaces;
-using Deraa.DAL.Data.Repositories;
+using Kojh.DAL.Data;
+using Kojh.DAL.Data.Interfaces;
+using Kojh.DAL.Data.Repositories;
 using FluentValidation.AspNetCore;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
@@ -20,11 +20,11 @@ builder.Services.AddSwaggerGen();
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Deraa.DAL")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Kojh.DAL")));
 
 //Add Item Services
 builder.Services.AddScoped<IItemService, ItemService>();
-builder.Services.AddScoped<IApartmentRepository, ApartmentRepository>();
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
 
 // Add FluentValidation

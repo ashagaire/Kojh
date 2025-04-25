@@ -1,5 +1,5 @@
-﻿using Deraa.DAL.Data;
-using Deraa.DAL.Models;
+﻿using Kojh.DAL.Data;
+using Kojh.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Services
@@ -13,20 +13,20 @@ namespace backend.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Apartment>> GetAllAsync() => await _context.Apartments.ToListAsync();
+        public async Task<IEnumerable<Item>> GetAllAsync() => await _context.Items.ToListAsync();
 
-        public async Task<Apartment?> GetByIdAsync(int id) => await _context.Apartments.FindAsync(id);
+        public async Task<Item?> GetByIdAsync(int id) => await _context.Items.FindAsync(id);
 
-        public async Task<Apartment> CreateAsync(Apartment item)
+        public async Task<Item> CreateAsync(Item item)
         {
-            _context.Apartments.Add(item);
+            _context.Items.Add(item);
             await _context.SaveChangesAsync();
             return item;
         }
 
-        public async Task<Apartment?> UpdateAsync(int id, Apartment item)
+        public async Task<Item?> UpdateAsync(int id, Item item)
         {
-            var existingItem = await _context.Apartments.FindAsync(id);
+            var existingItem = await _context.Items.FindAsync(id);
             if (existingItem == null) return null;
 
             existingItem.Name = item.Name;
@@ -39,10 +39,10 @@ namespace backend.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var item = await _context.Apartments.FindAsync(id);
+            var item = await _context.Items.FindAsync(id);
             if (item == null) return false;
 
-            _context.Apartments.Remove(item);
+            _context.Items.Remove(item);
             await _context.SaveChangesAsync();
             return true;
         }

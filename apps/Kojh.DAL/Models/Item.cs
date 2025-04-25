@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Deraa.DAL.Models
+namespace Kojh.DAL.Models
 {
-    public class Apartment
+    public class Item
     {
         public int Id { get; set; }
         public string Name { get; set; }

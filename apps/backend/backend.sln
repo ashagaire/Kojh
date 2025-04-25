@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend", "backend.csproj", "{8E3AD343-9D31-4747-B931-DC9E32374B64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deraa.DAL", "..\Deraa.DAL\Deraa.DAL.csproj", "{9079F79D-60EA-4837-8D11-883A07C3761B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kojh.DAL", "..\Kojh.DAL\Kojh.DAL.csproj", "{9079F79D-60EA-4837-8D11-883A07C3761B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
-﻿namespace backend.Features.ApartmentFeatures.Response
+﻿namespace backend.Features.ItemFeatures.Response
 {
-    public class ApartmentResponse
+    public class ItemResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }
