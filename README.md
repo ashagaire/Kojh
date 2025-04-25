@@ -8,9 +8,10 @@ An apartment listing web application built in React Typescript for Frontend and 
   - User Secrets:
     - Add { ConnectionStrings: { DefaultConnection: "Server=127.0.0.1;Port=5432;Userid=<YOUR USERID>;Password=<YOUR PSW>;Database=<YOUR DB>;" }} to secrets.json
 -Apply the Migration (Update the Database)
-  - Menu - Tools - Package Manager Console
-    - `Add-Migration InitialCreate -Project Deraa.DAL -StartupProject backend`
-    - `Update-Database -Project Deraa.DAL -StartupProject backend`
+  - Menu - Tools > NuGet Package Manager > Package Manager Console
+    - Make sure Default project:  Deraa.DAL StartupProject backend
+    - `Add-Migration InitialCreate`
+    - `Update-Database `
 
 ## Figma
 
