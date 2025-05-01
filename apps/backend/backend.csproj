@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\ItemFeatures\**" />
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="Features\ItemFeatures\**" />
+    <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="Features\ItemFeatures\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="Features\ItemFeatures\**" />
+    <None Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Ardalis.ApiEndpoints" Version="4.1.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Mapster" Version="7.4.0" />
@@ -20,7 +31,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,8 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\ItemFeatures\Request\" />
-    <Folder Include="NewFolder\" />
+    <Folder Include="Features\Company\EndPoints\" />
   </ItemGroup>
 
 </Project>

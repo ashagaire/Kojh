@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using backend.MapProfiles;
 using Kojh.DAL.Models;
 using Kojh.DAL.Seed;
+using Microsoft.OpenApi.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Kojh API",
+        Version = "v1",
+        Description = "API documentation for Kojh project",
+        Contact = new OpenApiContact
+        {
+            Name = "Your Name",
+            Email = "your.email@example.com"
+        }
+    });
+
+    //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+    c.EnableAnnotations();
+});
 
 // Add DbConnection
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -50,8 +67,13 @@ using (var scope = app.Services.CreateScope())
 // Swagger only in dev
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Kojh API v1");
+        c.RoutePrefix = "swagger"; // default
+    });
 }
 
 app.UseHttpsRedirection();

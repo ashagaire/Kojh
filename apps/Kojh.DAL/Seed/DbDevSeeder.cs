@@ -7,10 +7,9 @@ namespace Kojh.DAL.Seed
     {
         public static void Seed(AppDbContext context)
         {
-            // Ensure the database is created
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            // Seed Companies
             if (!context.Companies.Any())
             {
                 var newCompany = new Company
@@ -25,7 +24,6 @@ namespace Kojh.DAL.Seed
                 context.SaveChanges();
             }
 
-            // Seed Associations
             if (!context.Associations.Any())
             {
                 var newAssociation = new Association
@@ -40,7 +38,6 @@ namespace Kojh.DAL.Seed
                 context.SaveChanges();
             }
 
-            // Seed Locations
             if (!context.Locations.Any())
             {
                 var newLocation = new Location
@@ -55,14 +52,12 @@ namespace Kojh.DAL.Seed
                 context.SaveChanges();
             }
 
-            // Seed Many-to-Many Relationships (CompanyLocation, CompanyAssociation)
             var company = context.Companies.FirstOrDefault();
             var association = context.Associations.FirstOrDefault();
             var location = context.Locations.FirstOrDefault();
 
             if (company != null && association != null && location != null)
             {
-                // Create the CompanyLocation relationship
                 var companyLocation = new CompanyLocation
                 {
                     CompanyId = company.Id,
@@ -73,7 +68,6 @@ namespace Kojh.DAL.Seed
 
                 context.CompanyLocations.Add(companyLocation);
 
-                // Create the CompanyAssociation relationship
                 var companyAssociation = new CompanyAssociation
                 {
                     CompanyId = company.Id,
