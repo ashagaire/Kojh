@@ -7,8 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace backend.Features.ItemFeatures.Endpoints
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
+
     public class GetAllItems : EndpointBaseAsync.WithoutRequest.WithActionResult<List<ItemResponse>>
     {
         private readonly IItemRepository _ItemRepository;
@@ -20,7 +19,7 @@ namespace backend.Features.ItemFeatures.Endpoints
             _mapper = mapper;
         }
 
-        [HttpGet("api/all")]
+        [HttpGet("apartments/all")]
         [SwaggerOperation(
             Summary = "Get all Apartments",
             Description = "Get all Apartments",

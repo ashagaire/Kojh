@@ -9,6 +9,7 @@ using backend.MapProfiles;
 using Kojh.DAL.Models;
 using Kojh.DAL.Seed;
 using Microsoft.OpenApi.Models;
+using backend.Features.Company.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,6 +44,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //Add Item Services
 builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<ICompanyServices, CompanyServices>();
 
 
 // Add FluentValidation
@@ -52,7 +54,6 @@ builder.Services.AddFluentValidationAutoValidation()
 // Mappers
 builder.Services.AddSingleton<IMapper, Mapper>();
 MappingConfig.RegisterMappings();
-
 
 
 var app = builder.Build();
@@ -72,7 +73,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Kojh API v1");
-        c.RoutePrefix = "swagger"; // default
+        c.RoutePrefix = "swagger"; 
     });
 }
 
