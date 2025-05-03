@@ -1,22 +1,23 @@
-# Deraa
-An apartment listing web application built in React Typescript for Frontend and C# for Backend.
+# Kojh
+A company profile directory web application built in React TypeScript for the frontend and C# for the backend.
+Allows users to search and view detailed profiles of registered companies, featuring a responsive user interface built with React and company data managed via RESTful APIs using C# with PostgreSQL.
 
 ## DB
 
-- PostgreSQL
+- PostgreSQL 
 - Connection string: "DefaultConnection"
   - User Secrets:
     - Add { ConnectionStrings: { DefaultConnection: "Server=127.0.0.1;Port=5432;Userid=<YOUR USERID>;Password=<YOUR PSW>;Database=<YOUR DB>;" }} to secrets.json
 -Apply the Migration (Update the Database)
   - Menu - Tools > NuGet Package Manager > Package Manager Console
-    - Make sure Default project:  Deraa.DAL StartupProject backend
+    - Make sure Default project:  Kojh.DAL StartupProject backend
     - `Add-Migration InitialCreate`
     - `Update-Database `
 
 ## Figma
 
-- Layout: https://www.figma.com/design/SZABlxWr1cHvmJDLRhRTg6/Deraa?node-id=1-2&t=q1wMLPvsx5RBSWjs-0
-- Model: https://www.figma.com/board/5ujNV3JVxyB1zMvFR9m5bZ/Deraa?node-id=0-1&p=f&t=q1wMLPvsx5RBSWjs-0
+- Layout: https://www.figma.com/design/SZABlxWr1cHvmJDLRhRTg6/Kojh?node-id=1-2&t=QN8ZoJw53jF92UXp-0
+- Model: https://www.figma.com/board/5ujNV3JVxyB1zMvFR9m5bZ/Kojh?node-id=0-1&p=f&t=JKOuaGvH6XFsmLXR-0
 
 ## Libraries
 
