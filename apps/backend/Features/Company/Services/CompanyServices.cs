@@ -18,8 +18,16 @@ namespace backend.Features.Company.Services
 
         public async Task<List<CompanyServiceModel>> GetAllCompaniesAsync(CancellationToken ct)
         {
-            var companies = await _dbcontext.Companies.ToListAsync(ct);
-            if (companies == null)
+            var companies = await _dbcontext.Companies
+                .Include(c => c.SocialMedia)
+                .Include(c => c.Memberships)
+                    .ThenInclude(m => m.Association)
+                        .ThenInclude(a => a.Logo)
+                .Include(c => c.Locations)
+                    .ThenInclude(l => l.Location)
+                .Include(c => c.Logo)
+                .ToListAsync(ct);
+            if (companies == null || companies.Count == 0)
             {
                 throw new Exception("No companies found");
             }
