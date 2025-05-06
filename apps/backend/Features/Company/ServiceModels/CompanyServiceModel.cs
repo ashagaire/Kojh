@@ -25,14 +25,6 @@ namespace backend.Features.Company.ServiceModels
         public CompanyLogoResponse? Logo { get; set; }
     }
 
-    //public class SocialMediaResponse
-    //{
-    //    public string Facebook { get; set; } = string.Empty;
-    //    public string LinkedIn { get; set; } = string.Empty;
-    //    public string Instagram { get; set; } = string.Empty;
-    //    public string Youtube { get; set; } = string.Empty;
-    //}
-
     public class CompanyAssociationServiceModel
     {
         public Guid Id { get; set; }

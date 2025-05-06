@@ -39,12 +39,14 @@ builder.Services.AddSwaggerGen(c =>
 // Add DbConnection
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Kojh.DAL")));
+// Add UnitOfWork
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //Add Item Services
 builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<ICompanyServices, CompanyServices>();
-
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 
 // Add FluentValidation
 builder.Services.AddFluentValidationAutoValidation()

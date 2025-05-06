@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kojh.DAL.Data.Interfaces;
+﻿using Kojh.DAL.Data.Interfaces;
 using Kojh.DAL.Helpers;
 using Kojh.DAL.Models;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +8,22 @@ namespace Kojh.DAL.Data.Repositories
     public class CompanyRepository : ICompanyRepository
     {
         private readonly AppDbContext _dbContext;
-        public CompanyRepository(AppDbContext dbContext) 
+        public CompanyRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task<List<Company>> GetAllCompaniesAsync(CancellationToken ct)
+        {
+            return await _dbContext.Companies
+                .Include(c => c.SocialMedia)
+                .Include(c => c.Memberships)
+                    .ThenInclude(m => m.Association)
+                        .ThenInclude(a => a.Logo)
+                .Include(c => c.Locations)
+                    .ThenInclude(l => l.Location)
+                .Include(c => c.Logo)
+                .ToListAsync(ct);
         }
 
         public async Task<PaginatedResponse<Company>> GetPaginatedCompanies(CompanyListFilter filter, CancellationToken ct, bool includeArchived = false)
@@ -27,7 +35,7 @@ namespace Kojh.DAL.Data.Repositories
             {
                 query = query.Where(x => x.Archived == false);
             }
-            
+
 
             if (!string.IsNullOrWhiteSpace(filter.Search))
             {

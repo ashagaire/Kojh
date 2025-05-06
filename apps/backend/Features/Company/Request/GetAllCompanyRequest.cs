@@ -1,6 +1,6 @@
-﻿using Kojh.DAL.Helpers;
+﻿using System.ComponentModel.DataAnnotations;
+using Kojh.DAL.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 
 namespace backend.Features.Company.Request
 {

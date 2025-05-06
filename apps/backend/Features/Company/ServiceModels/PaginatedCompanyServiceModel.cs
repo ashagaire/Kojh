@@ -7,6 +7,6 @@
         public int PageSize { get; set; } = 5;
 
         public int TotalCount { get; set; }
-        public List<CompanyServiceModel> Areas { get; set; } = [];
+        public List<CompanyServiceModel> Companies { get; set; } = [];
     }
 }

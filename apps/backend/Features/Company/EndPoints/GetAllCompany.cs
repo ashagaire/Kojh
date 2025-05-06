@@ -1,5 +1,7 @@
 ﻿using Ardalis.ApiEndpoints;
+using backend.Features.Company.Request;
 using backend.Features.Company.Response;
+using backend.Features.Company.ServiceModels;
 using backend.Features.Company.Services;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +9,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace backend.Features.Company.EndPoints
 {
-    public class GetAllCompany : EndpointBaseAsync.WithoutRequest.WithActionResult<List<CompanyResponse>>
+    public class GetAllCompany : EndpointBaseAsync.WithRequest<GetAllCompanyRequest>.WithActionResult<PaginatedCompanyResponse>
     {
         private readonly ICompanyServices _companyServices;
         private readonly IMapper _mapper;
@@ -16,7 +18,7 @@ namespace backend.Features.Company.EndPoints
             _companyServices = companyServices;
             _mapper = mapper;
         }
-        [HttpGet("company/all")]
+        [HttpPost("company/all")]
         [SwaggerOperation(
             Summary = "Get all Companies",
             Description = "Get all Companies",
@@ -25,10 +27,19 @@ namespace backend.Features.Company.EndPoints
          ]
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public override async Task<ActionResult<List<CompanyResponse>>> HandleAsync(CancellationToken ct = default)
+        public override async Task<ActionResult<PaginatedCompanyResponse>> HandleAsync(GetAllCompanyRequest request, CancellationToken ct = new())
         {
-            var companies = await _companyServices.GetAllCompaniesAsync(ct);
-            return Ok(_mapper.Map<List<CompanyResponse>>(companies));
+            try
+            {
+                var result = await _companyServices.GetPaginatedCompaniesAsync(_mapper.Map<PaginatedCompanyServiceModel>(request), ct);
+                if (result is null) return NotFound();
+                return Ok(_mapper.Map<PaginatedCompanyResponse>(result));
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

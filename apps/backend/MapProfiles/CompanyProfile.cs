@@ -1,5 +1,7 @@
-﻿using backend.Features.Company.Response;
+﻿using backend.Features.Company.Request;
+using backend.Features.Company.Response;
 using backend.Features.Company.ServiceModels;
+using Kojh.DAL.Helpers;
 using Kojh.DAL.Models;
 using Mapster;
 
@@ -28,6 +30,13 @@ namespace backend.MapProfiles
                 .Map(dest => dest.SocialMedia, src => src.SocialMedia);
 
             TypeAdapterConfig<CompanyLogo, CompanyLogoResponse>.NewConfig();
+
+            TypeAdapterConfig<GetAllCompanyRequest, PaginatedCompanyServiceModel>.NewConfig();
+
+            TypeAdapterConfig<PaginatedCompanyResponse, PaginatedCompanyServiceModel>.NewConfig();
+
+            TypeAdapterConfig<PaginatedCompanyServiceModel, CompanyListFilter>.NewConfig();
+
 
 
         }
