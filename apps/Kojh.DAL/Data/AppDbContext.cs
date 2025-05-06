@@ -37,7 +37,7 @@ namespace Kojh.DAL.Data
                 .HasForeignKey(cl => cl.LocationId);
 
             modelBuilder.Entity<CompanyAssociation>()
-                .HasKey(ca => new { ca.CompanyId, ca.AssociationId }); 
+                .HasKey(ca => new { ca.CompanyId, ca.AssociationId });
 
             modelBuilder.Entity<CompanyAssociation>()
                 .HasOne(ca => ca.Company)

@@ -1,6 +1,6 @@
 ﻿
-using Kojh.DAL.Models;
 using Kojh.DAL.Data;
+using Kojh.DAL.Models;
 namespace Kojh.DAL.Seed
 {
     public static class DbDevSeeder

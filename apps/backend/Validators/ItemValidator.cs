@@ -1,5 +1,5 @@
-﻿using Kojh.DAL.Models;
-using FluentValidation;
+﻿using FluentValidation;
+using Kojh.DAL.Models;
 
 namespace backend.Validators
 {

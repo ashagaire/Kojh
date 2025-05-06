@@ -1,6 +1,4 @@
-﻿using Kojh.DAL.Models;
-
-namespace backend.MapProfiles
+﻿namespace backend.MapProfiles
 {
     public static class MappingConfig
     {

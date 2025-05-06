@@ -1,7 +1,5 @@
-﻿using System.Threading;
-using Ardalis.ApiEndpoints;
+﻿using Ardalis.ApiEndpoints;
 using backend.Features.Company.Response;
-using backend.Features.Company.ServiceModels;
 using backend.Features.Company.Services;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;

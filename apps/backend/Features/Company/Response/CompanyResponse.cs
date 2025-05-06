@@ -1,8 +1,4 @@
-﻿using Kojh.DAL.Models;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace backend.Features.Company.Response
+﻿namespace backend.Features.Company.Response
 {
     public class CompanyResponse
     {
@@ -22,8 +18,8 @@ namespace backend.Features.Company.Response
         public string CompanyDescription { get; set; } = string.Empty;
 
         public SocialMediaResponse? SocialMedia { get; set; }
-        public  List<CompanyAssociationResponse> Memberships { get; set; } = [];
-        public  List<CompanyLocationResponse> Locations { get; set; } = [];
+        public List<CompanyAssociationResponse> Memberships { get; set; } = [];
+        public List<CompanyLocationResponse> Locations { get; set; } = [];
 
 
         public CompanyLogoResponse? Logo { get; set; }

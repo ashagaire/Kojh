@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using Kojh.DAL.Data.Interfaces;
 
 namespace Kojh.DAL.Models
@@ -18,7 +12,7 @@ namespace Kojh.DAL.Models
         public bool Archived { get; set; }
 
         public string Image { get; set; } = string.Empty;
-        public string ContentType { get; set; } = string.Empty; 
+        public string ContentType { get; set; } = string.Empty;
 
         public Guid AssociationId { get; set; }
     }

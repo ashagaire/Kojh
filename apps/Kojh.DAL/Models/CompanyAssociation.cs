@@ -13,7 +13,7 @@ namespace Kojh.DAL.Models
         public DateTimeOffset? ArchivedAt { get; set; }
         public bool Archived { get; set; }
         // Foreign keys
-    
+
         public Guid CompanyId { get; set; }
         [ForeignKey(nameof(CompanyId))]
         public virtual Company Company { get; set; } = null!;
@@ -22,6 +22,6 @@ namespace Kojh.DAL.Models
         [ForeignKey(nameof(AssociationId))]
         public virtual Association Association { get; set; } = null!;
 
-      
+
     }
 }

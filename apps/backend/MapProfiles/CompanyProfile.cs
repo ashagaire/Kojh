@@ -29,7 +29,7 @@ namespace backend.MapProfiles
 
             TypeAdapterConfig<CompanyLogo, CompanyLogoResponse>.NewConfig();
 
-            
+
         }
     }
 }

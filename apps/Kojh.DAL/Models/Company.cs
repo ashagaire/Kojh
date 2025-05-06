@@ -38,5 +38,5 @@ namespace Kojh.DAL.Models
         public string Password { get; set; } = string.Empty;
 
     }
-    
+
 }

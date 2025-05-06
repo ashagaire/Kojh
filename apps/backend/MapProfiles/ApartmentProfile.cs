@@ -1,6 +1,4 @@
-﻿using backend.Features.Company.Response;
-using backend.Features.Company.ServiceModels;
-using backend.Features.ItemFeatures.Response;
+﻿using backend.Features.ItemFeatures.Response;
 using Kojh.DAL.Models;
 using Mapster;
 
@@ -24,7 +22,7 @@ namespace backend.MapProfiles
                 .Map(dest => dest.Description, src => src.Description)
                 .Map(dest => dest.Price, src => src.Price);
 
-           
+
 
 
         }

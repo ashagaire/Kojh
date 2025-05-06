@@ -23,7 +23,7 @@ namespace backend.Features.Company.Services
                 .Include(c => c.Memberships)
                     .ThenInclude(m => m.Association)
                         .ThenInclude(a => a.Logo)
-                .Include(c => c.Locations)
+                 .Include(c => c.Locations)
                     .ThenInclude(l => l.Location)
                 .Include(c => c.Logo)
                 .ToListAsync(ct);
@@ -31,9 +31,38 @@ namespace backend.Features.Company.Services
             {
                 throw new Exception("No companies found");
             }
-            //var companyServiceModel = _mapper.Map<CompanyServiceModel>(companies);
-            //return companyServiceModel;
+
             return _mapper.Map<List<CompanyServiceModel>>(companies);
+        }
+
+        public async Task<PaginatedCompanyServiceModel> GetPaginatedCompaniesAsync(PaginatedCompanyServiceModel company, CancellationToken ct)
+        {
+            var companies = await _dbcontext.Companies
+                .Include(c => c.SocialMedia)
+                .Include(c => c.Memberships)
+                    .ThenInclude(m => m.Association)
+                        .ThenInclude(a => a.Logo)
+                 .Include(c => c.Locations)
+                    .ThenInclude(l => l.Location)
+                .Include(c => c.Logo)
+                .ToListAsync(ct);
+            if (companies == null || companies.Count == 0)
+            {
+                throw new Exception("No companies found");
+            }
+            var totalCount = companies.Count;
+            var paginatedCompanies = companies
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return new PaginatedCompanyServiceModel
+            {
+                Search = search,
+                CurrentPage = currentPage,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                Areas = _mapper.Map<List<CompanyServiceModel>>(paginatedCompanies),
+            };
         }
     }
 }

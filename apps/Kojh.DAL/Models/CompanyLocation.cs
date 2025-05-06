@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Kojh.DAL.Data.Interfaces;
 
 namespace Kojh.DAL.Models
@@ -16,7 +11,7 @@ namespace Kojh.DAL.Models
         public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
         public DateTimeOffset? ArchivedAt { get; set; }
         public bool Archived { get; set; }
-    
+
         public Guid CompanyId { get; set; }
         [ForeignKey(nameof(CompanyId))]
         public Company Company { get; set; } = null!;

@@ -15,7 +15,7 @@ namespace Kojh.DAL.Models
         public string Esatblished { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
 
-        public AssociationLogo? Logo { get; set; } 
+        public AssociationLogo? Logo { get; set; }
 
         public virtual List<CompanyAssociation> Companies { get; set; } = [];
     }

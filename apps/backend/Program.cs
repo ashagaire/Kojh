@@ -1,15 +1,14 @@
+using backend.Features.Company.Services;
+using backend.MapProfiles;
 using backend.Services;
+using FluentValidation.AspNetCore;
 using Kojh.DAL.Data;
 using Kojh.DAL.Data.Interfaces;
 using Kojh.DAL.Data.Repositories;
-using FluentValidation.AspNetCore;
+using Kojh.DAL.Seed;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
-using backend.MapProfiles;
-using Kojh.DAL.Models;
-using Kojh.DAL.Seed;
 using Microsoft.OpenApi.Models;
-using backend.Features.Company.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,7 +61,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    DbDevSeeder.Seed(dbContext); 
+    DbDevSeeder.Seed(dbContext);
 }
 
 // Swagger only in dev
@@ -73,7 +72,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Kojh API v1");
-        c.RoutePrefix = "swagger"; 
+        c.RoutePrefix = "swagger";
     });
 }
 

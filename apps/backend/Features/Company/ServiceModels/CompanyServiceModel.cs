@@ -1,5 +1,4 @@
 ﻿using backend.Features.Company.Response;
-using Kojh.DAL.Models;
 
 namespace backend.Features.Company.ServiceModels
 {
@@ -37,7 +36,7 @@ namespace backend.Features.Company.ServiceModels
     public class CompanyAssociationServiceModel
     {
         public Guid Id { get; set; }
-        public Guid AssociationId {get; set;}
+        public Guid AssociationId { get; set; }
         public string AssociationName { get; set; } = string.Empty;
         public AssociationLogoResponse? AssociationLogo { get; set; }
 
