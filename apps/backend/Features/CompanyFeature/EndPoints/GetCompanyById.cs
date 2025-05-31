@@ -1,12 +1,12 @@
 ﻿using Ardalis.ApiEndpoints;
-using backend.Features.Company.Request;
-using backend.Features.Company.Response;
-using backend.Features.Company.Services;
+using backend.Features.CompanyFeature.Response;
+using backend.Features.CompanyFeature.Request;
+using backend.Features.CompanyFeature.Services;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace backend.Features.Company.EndPoints
+namespace backend.Features.CompanyFeature.EndPoints
 {
     public class GetCompanyById : EndpointBaseAsync.WithRequest<GetCompanyByIdRequest>.WithActionResult<CompanyResponse>
     {
@@ -19,7 +19,7 @@ namespace backend.Features.Company.EndPoints
             _mapper = mapper;
         }
         [HttpGet("/company/{id:guid}")]
-        [SwaggerOperation( 
+        [SwaggerOperation(
             Summary = "Get Company",
             Description = "Get Company",
             OperationId = "GetCompanyById",

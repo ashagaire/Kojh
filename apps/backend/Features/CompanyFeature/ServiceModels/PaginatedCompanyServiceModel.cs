@@ -1,4 +1,4 @@
-﻿namespace backend.Features.Company.ServiceModels
+﻿namespace backend.Features.CompanyFeature.ServiceModels
 {
     public class PaginatedCompanyServiceModel
     {

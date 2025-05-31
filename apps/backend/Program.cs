@@ -1,4 +1,4 @@
-using backend.Features.Company.Services;
+using backend.Features.CompanyFeature.Services;
 using backend.MapProfiles;
 using backend.Services;
 using FluentValidation.AspNetCore;
@@ -47,6 +47,10 @@ builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<ICompanyServices, CompanyServices>();
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<IAssociationRepository, AssociationRepository>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<ICompanyAssociationRepository, CompanyAssociationRepository>();
+builder.Services.AddScoped<ICompanyLocationRepository, CompanyLocationRepository>();
 
 // Add FluentValidation
 builder.Services.AddFluentValidationAutoValidation()

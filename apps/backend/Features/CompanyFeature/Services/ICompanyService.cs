@@ -1,11 +1,12 @@
-﻿using backend.Features.Company.ServiceModels;
+﻿using backend.Features.CompanyFeature.ServiceModels;
 
-namespace backend.Features.Company.Services
+namespace backend.Features.CompanyFeature.Services
 {
     public interface ICompanyServices
     {
         Task<CompanyServiceModel> GetCompanyByIdAsync(Guid id, CancellationToken ct);
         Task<List<CompanyServiceModel>> GetAllCompaniesAsync(CancellationToken ct);
         Task<PaginatedCompanyServiceModel> GetPaginatedCompaniesAsync(PaginatedCompanyServiceModel company, CancellationToken ct);
+        Task<CompanyServiceModel> AddCompanyAsync(CompanyServiceModel company, CancellationToken ct);
     }
 }

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend.Features.Company.Request
+namespace backend.Features.CompanyFeature.Request
 {
     public class GetCompanyByIdRequest
     {

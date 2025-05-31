@@ -2,7 +2,7 @@
 using Kojh.DAL.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend.Features.Company.Request
+namespace backend.Features.CompanyFeature.Request
 {
     public class GetAllCompanyRequest
     {

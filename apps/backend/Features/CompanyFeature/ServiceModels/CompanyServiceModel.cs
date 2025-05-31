@@ -1,6 +1,7 @@
-﻿using backend.Features.Company.Response;
+﻿using backend.Features.CompanyFeature.Response;
+using Kojh.DAL.Models;
 
-namespace backend.Features.Company.ServiceModels
+namespace backend.Features.CompanyFeature.ServiceModels
 {
     public class CompanyServiceModel
     {
@@ -18,13 +19,28 @@ namespace backend.Features.Company.ServiceModels
         public string ConciseDescription { get; set; } = string.Empty;
         public string CompanyDescription { get; set; } = string.Empty;
 
-        public SocialMediaResponse? SocialMedia { get; set; }
-        public List<CompanyAssociationServiceModel> Memberships { get; set; } = [];
-        public List<CompanyLocationServiceModel> Locations { get; set; } = [];
+        public SocialMediaServiceModel? SocialMedia { get; set; }
+        public List<Guid> Memberships { get; set; } = [];
+        public List<Guid> Locations { get; set; } = [];
 
-        public CompanyLogoResponse? Logo { get; set; }
+        public CompanyLogoServiceModel? Logo { get; set; }
+
+        public List<CompanyAssociationServiceModel> ExistingMemberships { get; set; } = [];
+        public List<CompanyLocationServiceModel> ExistingLocations { get; set; } = [];
     }
 
+    public class CompanyLogoServiceModel
+    {
+        public Guid Id { get; set; }
+        public string Image { get; set; } = string.Empty;
+    }
+    public class SocialMediaServiceModel
+    {
+        public string Facebook { get; set; } = string.Empty;
+        public string LinkedIn { get; set; } = string.Empty;
+        public string Instagram { get; set; } = string.Empty;
+        public string Youtube { get; set; } = string.Empty;
+    }
     public class CompanyAssociationServiceModel
     {
         public Guid Id { get; set; }

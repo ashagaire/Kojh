@@ -1,5 +1,5 @@
-﻿using backend.Features.Company.Response;
-using backend.Features.Company.ServiceModels;
+﻿using backend.Features.CompanyFeature.Response;
+using backend.Features.CompanyFeature.ServiceModels;
 using Kojh.DAL.Models;
 using Mapster;
 

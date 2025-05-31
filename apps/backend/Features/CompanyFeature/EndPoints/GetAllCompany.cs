@@ -1,13 +1,13 @@
 ﻿using Ardalis.ApiEndpoints;
-using backend.Features.Company.Request;
-using backend.Features.Company.Response;
-using backend.Features.Company.ServiceModels;
-using backend.Features.Company.Services;
+using backend.Features.CompanyFeature.Response;
+using backend.Features.CompanyFeature.Request;
+using backend.Features.CompanyFeature.ServiceModels;
+using backend.Features.CompanyFeature.Services;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace backend.Features.Company.EndPoints
+namespace backend.Features.CompanyFeature.EndPoints
 {
     public class GetAllCompany : EndpointBaseAsync.WithRequest<GetAllCompanyRequest>.WithActionResult<PaginatedCompanyResponse>
     {

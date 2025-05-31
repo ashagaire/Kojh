@@ -24,7 +24,7 @@ namespace Kojh.DAL.Data.Repositories
                 .Include(c => c.Logo)
                 .FirstOrDefaultAsync(c => c.Id == id, ct);
             if (company == null || (!includeArchived && company.Archived)) return null;
-           
+
             return company;
         }
 
@@ -61,6 +61,16 @@ namespace Kojh.DAL.Data.Repositories
             var list = await query.Skip(skip).Take(filter.PageSize).ToListAsync(ct);
 
             return new PaginatedResponse<Company>() { TotalCount = count, Items = list };
+        }
+
+        public async Task<Company> AddCompanyAsync(Company company, CancellationToken ct)
+        {
+            company.Id = Guid.NewGuid();
+            company.CreatedAt = DateTime.UtcNow;
+            company.UpdatedAt = DateTime.UtcNow;
+            _dbContext.Companies.Add(company);
+            await _dbContext.SaveChangesAsync(ct);
+            return company;
         }
     }
 }

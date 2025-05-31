@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace backend.Features.Company.Response
+namespace backend.Features.CompanyFeature.Response
 {
     public class PaginatedCompanyResponse
     {
