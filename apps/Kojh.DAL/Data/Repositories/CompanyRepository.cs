@@ -12,6 +12,21 @@ namespace Kojh.DAL.Data.Repositories
         {
             _dbContext = dbContext;
         }
+        public async Task<Company?> GetCompanyByIdAsync(Guid id, CancellationToken ct, bool includeArchived = false)
+        {
+            var company = await _dbContext.Companies
+                .Include(c => c.SocialMedia)
+                .Include(c => c.Memberships)
+                    .ThenInclude(m => m.Association)
+                        .ThenInclude(a => a.Logo)
+                .Include(c => c.Locations)
+                    .ThenInclude(l => l.Location)
+                .Include(c => c.Logo)
+                .FirstOrDefaultAsync(c => c.Id == id, ct);
+            if (company == null || (!includeArchived && company.Archived)) return null;
+           
+            return company;
+        }
 
         public async Task<List<Company>> GetAllCompaniesAsync(CancellationToken ct)
         {

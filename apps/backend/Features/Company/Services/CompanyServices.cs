@@ -16,6 +16,15 @@ namespace backend.Features.Company.Services
             _mapper = mapper;
         }
 
+        public async Task<CompanyServiceModel> GetCompanyByIdAsync(Guid id, CancellationToken ct)
+        {
+            var company = await _unitOfWork.Companies.GetCompanyByIdAsync(id, ct);
+            if (company == null)
+            {
+                throw new Exception($"Company with ID {id} not found");
+            }
+            return _mapper.Map<CompanyServiceModel>(company);
+        }
         public async Task<List<CompanyServiceModel>> GetAllCompaniesAsync(CancellationToken ct)
         {
             var companies = await _unitOfWork.Companies.GetAllCompaniesAsync(ct);
