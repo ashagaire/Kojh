@@ -1,5 +1,5 @@
-﻿using backend.Features.CompanyFeature.Response;
-using backend.Features.CompanyFeature.Request;
+﻿using backend.Features.CompanyFeature.Request;
+using backend.Features.CompanyFeature.Response;
 using backend.Features.CompanyFeature.ServiceModels;
 using Kojh.DAL.Helpers;
 using Kojh.DAL.Models;
@@ -42,25 +42,25 @@ namespace backend.MapProfiles
             TypeAdapterConfig<CompanyServiceModel, Company>
                 .NewConfig()
                 .Map(dest => dest.SocialMedia, src => src.SocialMedia)
-                //.Map(dest => dest.Memberships, src => src.Memberships)
-                //.Map(dest => dest.Locations, src => src.Locations)
-                .Map(dest => dest.Logo, src => src.Logo);
+                .Map(dest => dest.Logo, src => src.Logo)
+                .Ignore(dest => dest.Memberships)
+                .Ignore(dest => dest.Locations);
 
             TypeAdapterConfig<Company, CompanyServiceModel>
                 .NewConfig()
                 .Map(dest => dest.SocialMedia, src => src.SocialMedia)
-                .Map(dest => dest.Memberships, src => src.Memberships)
-                .Map(dest => dest.Locations, src => src.Locations)
+                .Map(dest => dest.ExistingMemberships, src => src.Memberships)
+                .Map(dest => dest.ExistingLocations, src => src.Locations)
                 .Map(dest => dest.Logo, src => src.Logo);
 
             TypeAdapterConfig<CompanyServiceModel, CompanyResponse>
                 .NewConfig()
                 .Map(dest => dest.SocialMedia, src => src.SocialMedia)
-                .Map(dest => dest.Memberships, src => src.Memberships)
-                .Map(dest => dest.Locations, src => src.Locations)
+                .Map(dest => dest.Memberships, src => src.ExistingMemberships)
+                .Map(dest => dest.Locations, src => src.ExistingLocations)
                 .Map(dest => dest.Logo, src => src.Logo);
 
-       
+
 
             // SocialMedia and Logo
             TypeAdapterConfig<SocialMediaServiceModel, SocialMediaResponse>.NewConfig();
@@ -90,29 +90,33 @@ namespace backend.MapProfiles
                 .NewConfig()
                 .Map(dest => dest.Id, src => src.Id)
                 .Map(dest => dest.AssociationId, src => src.AssociationId)
-                .Map(dest => dest.Name, src => src.AssociationName)
+                .Map(dest => dest.AssociationName, src => src.AssociationName)
                 .Map(dest => dest.AssociationLogo, src => src.AssociationLogo);
 
             // Location <-> ServiceModel/Response
             TypeAdapterConfig<CompanyLocation, CompanyLocationServiceModel>
                 .NewConfig()
-                .Map(dest => dest.Id, src => src.Id);
+                .Map(dest => dest.Id, src => src.Id)
+                .Map(dest => dest.LocationId, src => src.LocationId)
+                .Map(dest => dest.LocationName, src => src.Location.City);
 
-            TypeAdapterConfig<CompanyLocation, CompanyLocationResponse>
+            TypeAdapterConfig<CompanyLocationServiceModel, CompanyLocationResponse>
                 .NewConfig()
-                .Map(dest => dest.Id, src => src.Id);
+                .Map(dest => dest.Id, src => src.Id)
+                .Map(dest => dest.LocationId, src => src.LocationId)
+                .Map(dest => dest.LocationName, src => src.LocationName);
 
-            //// Map List<CompanyAssociation> <-> List<Guid>
-            //TypeAdapterConfig<List<CompanyAssociation>, List<Guid>>.NewConfig()
-            //    .MapWith(src => src.Select(a => a.AssociationId).ToList());
-            //TypeAdapterConfig<List<Guid>, List<CompanyAssociation>>.NewConfig()
-            //    .MapWith(src => src.Select(id => new CompanyAssociation { AssociationId = id }).ToList());
+            // Map List<CompanyAssociation> <-> List<Guid>
+            TypeAdapterConfig<List<CompanyAssociation>, List<Guid>>.NewConfig()
+                .MapWith(src => src.Select(a => a.AssociationId).ToList());
+            TypeAdapterConfig<List<Guid>, List<CompanyAssociation>>.NewConfig()
+                .MapWith(src => src.Select(id => new CompanyAssociation { AssociationId = id }).ToList());
 
-            ////// Map List<CompanyLocation> <-> List<Guid>
-            //TypeAdapterConfig<List<CompanyLocation>, List<Guid>>.NewConfig()
-            //    .MapWith(src => src.Select(l => l.LocationId).ToList());
-            //TypeAdapterConfig<List<Guid>, List<CompanyLocation>>.NewConfig()
-            //    .MapWith(src => src.Select(id => new CompanyLocation { LocationId = id }).ToList());
+            //// Map List<CompanyLocation> <-> List<Guid>
+            TypeAdapterConfig<List<CompanyLocation>, List<Guid>>.NewConfig()
+                .MapWith(src => src.Select(l => l.LocationId).ToList());
+            TypeAdapterConfig<List<Guid>, List<CompanyLocation>>.NewConfig()
+                .MapWith(src => src.Select(id => new CompanyLocation { LocationId = id }).ToList());
 
         }
     }

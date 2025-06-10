@@ -68,6 +68,7 @@ namespace Kojh.DAL.Data.Repositories
             company.Id = Guid.NewGuid();
             company.CreatedAt = DateTime.UtcNow;
             company.UpdatedAt = DateTime.UtcNow;
+
             _dbContext.Companies.Add(company);
             await _dbContext.SaveChangesAsync(ct);
             return company;

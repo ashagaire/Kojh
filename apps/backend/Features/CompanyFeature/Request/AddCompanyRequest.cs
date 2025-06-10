@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using backend.Features.CompanyFeature.Response;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Features.CompanyFeature.Request

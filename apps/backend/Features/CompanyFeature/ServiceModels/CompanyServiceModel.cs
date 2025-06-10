@@ -1,7 +1,4 @@
-﻿using backend.Features.CompanyFeature.Response;
-using Kojh.DAL.Models;
-
-namespace backend.Features.CompanyFeature.ServiceModels
+﻿namespace backend.Features.CompanyFeature.ServiceModels
 {
     public class CompanyServiceModel
     {
@@ -46,14 +43,20 @@ namespace backend.Features.CompanyFeature.ServiceModels
         public Guid Id { get; set; }
         public Guid AssociationId { get; set; }
         public string AssociationName { get; set; } = string.Empty;
-        public AssociationLogoResponse? AssociationLogo { get; set; }
+        public AssociationLogoServiceModel? AssociationLogo { get; set; }
 
     }
 
     public class CompanyLocationServiceModel
     {
         public Guid Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public Guid LocationId { get; set; }
+        public string LocationName { get; set; } = string.Empty;
 
+    }
+
+    public class AssociationLogoServiceModel
+    {
+        public string Image { get; set; } = string.Empty;
     }
 }

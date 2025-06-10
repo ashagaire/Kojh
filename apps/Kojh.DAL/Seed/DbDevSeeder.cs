@@ -25,6 +25,7 @@ namespace Kojh.DAL.Seed
             }
 
             if (!context.Associations.Any())
+
             {
                 var newAssociation = new Association
                 {
@@ -35,6 +36,17 @@ namespace Kojh.DAL.Seed
                 };
 
                 context.Associations.Add(newAssociation);
+
+                var newAssociationLogo = new AssociationLogo
+                {
+                    Id = Guid.NewGuid(),
+                    AssociationId = newAssociation.Id,
+                    Image = "Sample Association Logo",
+                    CreatedAt = DateTimeOffset.UtcNow,
+                    UpdatedAt = DateTimeOffset.UtcNow
+                };
+                context.AssociationLogos.Add(newAssociationLogo);
+
                 context.SaveChanges();
             }
 
@@ -60,6 +72,7 @@ namespace Kojh.DAL.Seed
             {
                 var companyLocation = new CompanyLocation
                 {
+                    Id = Guid.NewGuid(),
                     CompanyId = company.Id,
                     LocationId = location.Id,
                     CreatedAt = DateTimeOffset.UtcNow,
@@ -70,6 +83,7 @@ namespace Kojh.DAL.Seed
 
                 var companyAssociation = new CompanyAssociation
                 {
+                    Id = Guid.NewGuid(),
                     CompanyId = company.Id,
                     AssociationId = association.Id,
                     CreatedAt = DateTimeOffset.UtcNow,

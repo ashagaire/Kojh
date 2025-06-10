@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Transactions;
+﻿using System.Transactions;
 using backend.Features.CompanyFeature.ServiceModels;
 using Kojh.DAL.Data.Interfaces;
 using Kojh.DAL.Helpers;
@@ -59,6 +58,8 @@ namespace backend.Features.CompanyFeature.Services
             using var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
 
             var added = await _unitOfWork.Companies.AddCompanyAsync(_mapper.Map<Company>(company), ct);
+            await _unitOfWork.CompleteAsync(ct);
+
 
             List<CompanyAssociation> ExistingMemberships = [];
 
@@ -94,7 +95,9 @@ namespace backend.Features.CompanyFeature.Services
             await _unitOfWork.CompanyLocations.AddCompanyLocationAsync(ExistingLocations, ct);
             await _unitOfWork.CompleteAsync(ct);
 
-            fullyAdded = _mapper.Map<CompanyServiceModel>(added);
+            var companyWithIncludes = await _unitOfWork.Companies.GetCompanyByIdAsync(added.Id, ct);
+
+            fullyAdded = _mapper.Map<CompanyServiceModel>(companyWithIncludes);
 
             transactionScope.Complete();
 

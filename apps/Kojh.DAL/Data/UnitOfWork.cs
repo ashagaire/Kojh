@@ -12,6 +12,7 @@ namespace Kojh.DAL.Data
         public ICompanyAssociationRepository CompanyAssociations { get; set; }
         public ICompanyLocationRepository CompanyLocations { get; set; }
 
+
         public UnitOfWork(AppDbContext dbContext)
         {
             _dbContext = dbContext;

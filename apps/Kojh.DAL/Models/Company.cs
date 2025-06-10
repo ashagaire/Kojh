@@ -25,9 +25,9 @@ namespace Kojh.DAL.Models
         public string ConciseDescription { get; set; } = string.Empty;
         public string CompanyDescription { get; set; } = string.Empty;
 
-        public Guid? SocialMediasId { get; set; }
-        [ForeignKey(nameof(SocialMediasId))]
-        public virtual SocialMedia SocialMedia { get; set; } = null!;
+        //public Guid? SocialMediasId { get; set; }
+        //[ForeignKey(nameof(SocialMediasId))]
+        public SocialMedia? SocialMedia { get; set; } = null!;
 
         public virtual List<CompanyAssociation> Memberships { get; set; } = [];
         public virtual List<CompanyLocation> Locations { get; set; } = [];

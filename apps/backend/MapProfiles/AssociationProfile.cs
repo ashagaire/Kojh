@@ -20,7 +20,13 @@ namespace backend.MapProfiles
             TypeAdapterConfig<CompanyAssociationServiceModel, CompanyAssociationResponse>
                 .NewConfig();
 
-            TypeAdapterConfig<AssociationLogo, AssociationLogoResponse>.NewConfig();
+            TypeAdapterConfig<AssociationLogo, AssociationLogoServiceModel>.NewConfig()
+                .Map(dest => dest.Image, src => src.Image);
+
+            TypeAdapterConfig<AssociationLogoServiceModel, AssociationLogoResponse>
+               .NewConfig()
+                .Map(dest => dest.Image, src => src.Image);
+            ;
         }
     }
 }

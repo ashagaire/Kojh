@@ -1,7 +1,7 @@
 ﻿using Ardalis.ApiEndpoints;
+using backend.Features.CompanyFeature.Request;
 using backend.Features.CompanyFeature.Response;
 using backend.Features.CompanyFeature.ServiceModels;
-using backend.Features.CompanyFeature.Request;
 using backend.Features.CompanyFeature.Services;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
