@@ -4,6 +4,7 @@ using Kojh.DAL.Data.Interfaces;
 using Kojh.DAL.Helpers;
 using Kojh.DAL.Models;
 using MapsterMapper;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace backend.Features.CompanyFeature.Services
 {
@@ -102,6 +103,31 @@ namespace backend.Features.CompanyFeature.Services
             transactionScope.Complete();
 
             return fullyAdded;
+        }
+
+        public async Task<CompanyServiceModel?> UpdateCompanyDetailsAsync(CompanyServiceModel company, CancellationToken ct)
+        {
+            var companyToUpdate = await _unitOfWork.Companies.GetCompanyByIdAsync(company.Id, ct);
+            if (companyToUpdate is null) return null;
+
+            companyToUpdate.Name = company.Name;
+            companyToUpdate.AccountType = company.AccountType;
+            companyToUpdate.HomePage = company.HomePage;
+            companyToUpdate.GeneralEmailAddress = company.GeneralEmailAddress;
+            companyToUpdate.GeneralPhoneNumber = company.GeneralPhoneNumber;
+            companyToUpdate.MainAddress = company.MainAddress;
+            companyToUpdate.NumberOfEmployee = company.NumberOfEmployee;
+            companyToUpdate.Established = company.Established;
+            companyToUpdate.BusinessId = company.BusinessId;
+            companyToUpdate.ContactPersonEmail = company.ContactPersonEmail;
+            companyToUpdate.ConciseDescription = company.ConciseDescription;
+            companyToUpdate.CompanyDescription = company.CompanyDescription;
+
+            var updated = await _unitOfWork.Companies.UpdateCompanyAsync(companyToUpdate, ct);
+            await _unitOfWork.CompleteAsync(ct);
+            return updated is null ? null : _mapper.Map<CompanyServiceModel>(updated);
+
+
         }
     }
 }

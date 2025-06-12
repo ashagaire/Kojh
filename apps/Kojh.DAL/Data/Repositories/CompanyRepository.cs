@@ -73,5 +73,15 @@ namespace Kojh.DAL.Data.Repositories
             await _dbContext.SaveChangesAsync(ct);
             return company;
         }
+
+        public async Task<Company?> UpdateCompanyAsync(Company company, CancellationToken ct)
+        {
+            _dbContext.Entry(company).State = EntityState.Detached;
+            company.UpdatedAt = DateTime.UtcNow;
+
+            _dbContext.Set<Company>().Update(company);
+
+            return await Task.FromResult(company);
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace Kojh.DAL.Data.Interfaces
         Task<List<Company>> GetAllCompaniesAsync(CancellationToken ct);
         Task<PaginatedResponse<Company>> GetPaginatedCompanies(CompanyListFilter filter, CancellationToken ct, bool includeArchived = false);
         Task<Company> AddCompanyAsync(Company company, CancellationToken ct);
+        Task<Company?> UpdateCompanyAsync(Company company, CancellationToken ct);
     }
 }

@@ -39,6 +39,21 @@ namespace backend.MapProfiles
                 .Map(dest => dest.Locations, src => src.Body.Locations)
                 .Map(dest => dest.Logo, src => src.Body.Logo);
 
+            TypeAdapterConfig<UpdateCompanyDetailsRequest, CompanyServiceModel>
+                .NewConfig()
+                .Map(dest => dest.Name, src => src.Body.Name)
+                .Map(dest => dest.AccountType, src => src.Body.AccountType)
+                .Map(dest => dest.HomePage, src => src.Body.HomePage)
+                .Map(dest => dest.GeneralEmailAddress, src => src.Body.GeneralEmailAddress)
+                .Map(dest => dest.GeneralPhoneNumber, src => src.Body.GeneralPhoneNumber)
+                .Map(dest => dest.MainAddress, src => src.Body.MainAddress)
+                .Map(dest => dest.NumberOfEmployee, src => src.Body.NumberOfEmployee)
+                .Map(dest => dest.Established, src => src.Body.Established)
+                .Map(dest => dest.BusinessId, src => src.Body.BusinessId)
+                .Map(dest => dest.ContactPersonEmail, src => src.Body.ContactPersonEmail)
+                .Map(dest => dest.ConciseDescription, src => src.Body.ConciseDescription)
+                .Map(dest => dest.CompanyDescription, src => src.Body.CompanyDescription);
+
             TypeAdapterConfig<CompanyServiceModel, Company>
                 .NewConfig()
                 .Map(dest => dest.SocialMedia, src => src.SocialMedia)
