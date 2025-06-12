@@ -24,7 +24,7 @@ namespace Kojh.DAL.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CompanyLocation>()
-                .HasKey(cl => new { cl.CompanyId, cl.LocationId });
+                .HasIndex(cl => new { cl.CompanyId, cl.LocationId });
 
             modelBuilder.Entity<CompanyLocation>()
                 .HasOne(cl => cl.Company)
@@ -37,7 +37,7 @@ namespace Kojh.DAL.Data
                 .HasForeignKey(cl => cl.LocationId);
 
             modelBuilder.Entity<CompanyAssociation>()
-                .HasKey(ca => new { ca.CompanyId, ca.AssociationId });
+                .HasIndex(ca => new { ca.CompanyId, ca.AssociationId });
 
             modelBuilder.Entity<CompanyAssociation>()
                 .HasOne(ca => ca.Company)

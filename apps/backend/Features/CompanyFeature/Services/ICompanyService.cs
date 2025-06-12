@@ -9,5 +9,7 @@ namespace backend.Features.CompanyFeature.Services
         Task<PaginatedCompanyServiceModel> GetPaginatedCompaniesAsync(PaginatedCompanyServiceModel company, CancellationToken ct);
         Task<CompanyServiceModel> AddCompanyAsync(CompanyServiceModel company, CancellationToken ct);
         Task<CompanyServiceModel?> UpdateCompanyDetailsAsync(CompanyServiceModel company, CancellationToken ct);
+
+        Task<CompanyServiceModel?> DeleteCompanyAsync(Guid id, CancellationToken ct);
     }
 }

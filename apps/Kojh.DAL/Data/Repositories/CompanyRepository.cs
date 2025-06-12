@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kojh.DAL.Data.Repositories
 {
-    public class CompanyRepository : ICompanyRepository
+    public class CompanyRepository : Repository<Company>, ICompanyRepository
     {
         private readonly AppDbContext _dbContext;
-        public CompanyRepository(AppDbContext dbContext)
+        public CompanyRepository(AppDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

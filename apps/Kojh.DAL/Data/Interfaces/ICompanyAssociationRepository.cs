@@ -7,7 +7,7 @@ using Kojh.DAL.Models;
 
 namespace Kojh.DAL.Data.Interfaces
 {
-    public interface ICompanyAssociationRepository
+    public interface ICompanyAssociationRepository : IRepository<CompanyAssociation>
     {
         Task<List<CompanyAssociation>> AddCompanyAssociationAsync(List<CompanyAssociation> companyAssociation, CancellationToken ct);
     }

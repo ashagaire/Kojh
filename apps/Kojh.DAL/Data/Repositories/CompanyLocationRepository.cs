@@ -9,10 +9,10 @@ using Kojh.DAL.Models;
 namespace Kojh.DAL.Data.Repositories
 {
 
-    public class CompanyLocationRepository : ICompanyLocationRepository
+    public class CompanyLocationRepository : Repository<CompanyLocation>, ICompanyLocationRepository
     {
         private readonly AppDbContext _dbContext;
-        public CompanyLocationRepository(AppDbContext dbContext)
+        public CompanyLocationRepository(AppDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

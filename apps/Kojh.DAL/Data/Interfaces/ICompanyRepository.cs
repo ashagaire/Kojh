@@ -3,7 +3,7 @@ using Kojh.DAL.Models;
 
 namespace Kojh.DAL.Data.Interfaces
 {
-    public interface ICompanyRepository
+    public interface ICompanyRepository : IRepository<Company>
     {
         Task<Company?> GetCompanyByIdAsync(Guid id, CancellationToken ct, bool includeArchived = false);
         Task<List<Company>> GetAllCompaniesAsync(CancellationToken ct);

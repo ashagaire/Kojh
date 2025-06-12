@@ -7,7 +7,7 @@ using Kojh.DAL.Models;
 
 namespace Kojh.DAL.Data.Interfaces
 {
-    public interface ICompanyLocationRepository
+    public interface ICompanyLocationRepository : IRepository<CompanyLocation>
     {
         Task<List<CompanyLocation>> AddCompanyLocationAsync(List<CompanyLocation> companyLocations, CancellationToken ct);
     }

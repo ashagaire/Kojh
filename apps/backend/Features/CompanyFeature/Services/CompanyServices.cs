@@ -129,5 +129,31 @@ namespace backend.Features.CompanyFeature.Services
 
 
         }
-    }
+        public async Task<CompanyServiceModel?> DeleteCompanyAsync(Guid id, CancellationToken ct)
+        {
+            Company? archived;
+
+            using var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+
+            var companyAssociations = await _unitOfWork.CompanyAssociations.FindAsync(x => x.CompanyId == id, ct);
+
+            var removedCompanyAssociations = await _unitOfWork.CompanyAssociations.RemoveRangeAsync(companyAssociations, ct);
+            await _unitOfWork.CompleteAsync(ct);
+
+            if (companyAssociations.Count != removedCompanyAssociations.Count) throw new ArgumentException("Error removing Company with Associations");
+
+            var companyLocations = await _unitOfWork.CompanyLocations.FindAsync(x => x.CompanyId == id, ct);
+            var removedCompanyLocations = await _unitOfWork.CompanyLocations.RemoveRangeAsync(companyLocations, ct);
+            await _unitOfWork.CompleteAsync(ct);
+            if (companyLocations.Count != removedCompanyLocations.Count) throw new ArgumentException("Error removing Company with Locations");
+
+            archived = await _unitOfWork.Companies.RemoveAsync(id, ct);
+            await _unitOfWork.CompleteAsync(ct);
+
+            transactionScope.Complete();
+
+            return archived is null ? null : _mapper.Map<CompanyServiceModel>(archived);
+
+        }
+        }
 }
