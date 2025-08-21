@@ -60,6 +60,20 @@ builder.Services.AddFluentValidationAutoValidation()
 builder.Services.AddSingleton<IMapper, Mapper>();
 MappingConfig.RegisterMappings();
 
+//Configure CORS
+// Read a single origin string from appsettings.json
+var allowedOrigin = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("corsPolicy", policy =>
+    {
+        policy.WithOrigins(allowedOrigin ?? string.Empty)
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
@@ -82,20 +96,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-//Configure CORS
-// Read a single origin string from appsettings.json
-var allowedOrigin = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("corsPolicy", policy =>
-    {
-        policy.WithOrigins(allowedOrigin ?? string.Empty)
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-              .AllowCredentials();
-    });
-});
+
 
 app.UseCors("corsPolicy");
 
