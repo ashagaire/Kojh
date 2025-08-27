@@ -2,27 +2,28 @@ import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
-import { Typography, Dialog, DialogContent, IconButton } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CloseIconMui from "@mui/icons-material/Close";
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import LanguageMenu from "../childComponents/LanguageMenu";
 import LogIn from "../LogIn";
 import Menu from "@mui/material/Menu";
+import QuickSearch from "../childComponents/QuickSearch";
+
 export default function Header() {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangNp, setIsLangNp] = useState(i18n.language === "en");
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [loginOpenAnchor, setLoginOpenAnchor] = useState<null | HTMLElement>(
+    null
+  );
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+    setLoginOpenAnchor(event.currentTarget);
   };
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+    setLoginOpenAnchor(null);
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -44,7 +45,7 @@ export default function Header() {
             <div className="ml-4 flex items-center space-x-2 sm:space-x-4">
               {/* Search menu */}
               <div>
-                <SearchIcon fontSize="large" />
+                <QuickSearch />
               </div>
               {/* Login Button */}
               <div>
@@ -60,8 +61,8 @@ export default function Header() {
                 </Typography>
                 <Menu
                   sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
+                  id="menu-login"
+                  anchorEl={loginOpenAnchor}
                   anchorOrigin={{
                     vertical: "top",
                     horizontal: "right",
@@ -71,7 +72,7 @@ export default function Header() {
                     vertical: "top",
                     horizontal: "right",
                   }}
-                  open={Boolean(anchorElUser)}
+                  open={Boolean(loginOpenAnchor)}
                   onClose={handleCloseUserMenu}
                 >
                   <LogIn />
@@ -99,6 +100,7 @@ export default function Header() {
           </div>
         </div>
       </div>
+      {/* Login Modal */}
     </header>
   );
 }
