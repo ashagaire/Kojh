@@ -1,53 +1,91 @@
-// import { Link } from "react-scroll";
-import { Typography } from "@mui/material";
+import { useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
+import { Typography, Dialog, DialogContent, IconButton } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CloseIconMui from "@mui/icons-material/Close";
 import { useTranslation } from "react-i18next";
-
+import LanguageMenu from "../childComponents/LanguageMenu";
+import LogIn from "../LogIn";
+import Menu from "@mui/material/Menu";
 export default function Header() {
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLangNp, setIsLangNp] = useState(i18n.language === "en");
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setIsLangNp(lng === "en");
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="bg-blue-300 text-white px-4 py-6 shadow-md">
-      <div className=" container mx-auto flex items-center justify-between">
-        <h1 className=" text-2xl font-bold">{t("welcome")}</h1>
+      <div className="container mx-auto flex items-center justify-between">
+        <h1 className="text-2xl font-bold">{t("welcome")}</h1>
         <div className="ml-4 flex items-center space-x-2 sm:space-x-4">
           {/* Desktop Menu */}
-          {/* <div className="hidden  lg:flex">
-            <div className="ml-4 flex items-center space-x-2 sm:space-x-4  ">
-              {navItems.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  smooth={true}
-                  duration={500}
-                  spy={true}
-                  offset={-72}
-                  activeClass="active"
-                  className="nav-link "
+          <div className="hidden lg:flex">
+            <div className="ml-4 flex items-center space-x-2 sm:space-x-4">
+              {/* Search menu */}
+              <div>
+                <SearchIcon fontSize="large" />
+              </div>
+              {/* Login Button */}
+              <div>
+                <Typography
+                  sx={{
+                    cursor: "pointer",
+                    color: "white",
+                    fontWeight: 500,
+                  }}
+                  onClick={handleOpenUserMenu}
                 >
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontSize: {
-                        xs: "12px",
-                        sm: "18px",
-                        md: "20px",
-                        lg: "24px",
-                      },
-                    }}
-                  >
-                    {t(item.to)}
-                  </Typography>
-                </Link>
-              ))}
+                  LogIn
+                </Typography>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <LogIn />
+                </Menu>
+              </div>
               {/* Language Menu */}
-          {/* <LanguageMenu
-                isLangEn={isLangEn}
+              <LanguageMenu
+                isLangEn={isLangNp}
                 changeLanguage={changeLanguage}
               />
             </div>
-          </div>  */}
+          </div>
           {/* Mobile menu button */}
-          {/* <div className="lg:hidden ">
+          <div className="lg:hidden ">
             <button
               onClick={toggleMenu}
               className="text-[#d92cf9] hover:text-purple-600 focus:outline-none"
@@ -58,7 +96,7 @@ export default function Header() {
                 <MenuIcon fontSize="large" />
               )}
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </header>
