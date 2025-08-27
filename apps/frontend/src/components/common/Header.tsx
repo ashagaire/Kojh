@@ -1,20 +1,18 @@
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import SearchIcon from "@mui/icons-material/Search";
-import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import LanguageMenu from "../childComponents/LanguageMenu";
-import LogIn from "../LogIn";
-import Menu from "@mui/material/Menu";
+
+import LanguageMenu from "../buttons/LanguageMenu";
 import QuickSearch from "../childComponents/QuickSearch";
+import LoginButton from "../buttons/LoginButton";
+import MobileMenu from "../childComponents/MobileMenu";
 
 export default function Header() {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLangNp, setIsLangNp] = useState(i18n.language === "en");
+  const [isLangEn, setIsLangEn] = useState(i18n.language === "en");
   const [loginOpenAnchor, setLoginOpenAnchor] = useState<null | HTMLElement>(
     null
   );
@@ -31,7 +29,7 @@ export default function Header() {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-    setIsLangNp(lng === "en");
+    setIsLangEn(lng === "en");
     setIsMenuOpen(false);
   };
 
@@ -40,47 +38,23 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-between">
         <h1 className="text-2xl font-bold">{t("welcome")}</h1>
         <div className="ml-4 flex items-center space-x-2 sm:space-x-4">
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex">
-            <div className="ml-4 flex items-center space-x-2 sm:space-x-4">
-              {/* Search menu */}
-              <div>
-                <QuickSearch />
-              </div>
+          <div className="ml-4 flex items-center space-x-2 sm:space-x-4">
+            {/* Search menu */}
+            <div>
+              <QuickSearch />
+            </div>
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex">
               {/* Login Button */}
-              <div>
-                <Typography
-                  sx={{
-                    cursor: "pointer",
-                    color: "white",
-                    fontWeight: 500,
-                  }}
-                  onClick={handleOpenUserMenu}
-                >
-                  LogIn
-                </Typography>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-login"
-                  anchorEl={loginOpenAnchor}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(loginOpenAnchor)}
-                  onClose={handleCloseUserMenu}
-                >
-                  <LogIn />
-                </Menu>
-              </div>
+
+              <LoginButton
+                loginOpenAnchor={loginOpenAnchor}
+                handleOpenUserMenu={handleOpenUserMenu}
+                handleCloseUserMenu={handleCloseUserMenu}
+              />
               {/* Language Menu */}
               <LanguageMenu
-                isLangEn={isLangNp}
+                isLangEn={isLangEn}
                 changeLanguage={changeLanguage}
               />
             </div>
@@ -91,16 +65,20 @@ export default function Header() {
               onClick={toggleMenu}
               className="text-[#d92cf9] hover:text-purple-600 focus:outline-none"
             >
-              {isMenuOpen ? (
-                <CloseIcon fontSize="large" />
-              ) : (
-                <MenuIcon fontSize="large" />
-              )}
+              <MenuIcon fontSize="large" />
             </button>
           </div>
         </div>
+        <MobileMenu
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          isLangEn={isLangEn}
+          changeLanguage={changeLanguage}
+          loginOpenAnchor={loginOpenAnchor}
+          handleOpenUserMenu={handleOpenUserMenu}
+          handleCloseUserMenu={handleCloseUserMenu}
+        />
       </div>
-      {/* Login Modal */}
     </header>
   );
 }

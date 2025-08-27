@@ -21,8 +21,8 @@ const LanguageMenu: React.FC<LanguageMenuProps> = ({
       } cursor-pointer`}
     >
       {isLangEn ? (
-        <div className="flex space-x-2" onClick={() => changeLanguage("en")}>
-          <p>{isMobile ? "EN" : ""}</p>
+        <div className="flex space-x-2" onClick={() => changeLanguage("np")}>
+          <p>{isMobile ? "NP" : ""}</p>
           <ReactCountryFlag
             countryCode={"NP"}
             svg
