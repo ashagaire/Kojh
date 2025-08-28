@@ -1,14 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import CompanyList from "./pages/CompanyList";
 import "./App.css";
 import Layout from "./components/Layout";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<div> Landing Page </div>} />
-        <Route path="/companies" element={<CompanyList />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </Layout>
   );
