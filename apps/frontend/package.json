@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:api": "nswag openapi2tsclient /input:https://localhost:7098/swagger/v1/swagger.json /output:src/types/generated/ClientApi.ts /template:Axios /generateClientInterfaces:true /generateDtoTypes:true /typeStyle:Interface"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@openapitools/openapi-generator-cli": "^2.23.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",

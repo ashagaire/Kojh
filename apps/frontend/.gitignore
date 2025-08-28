@@ -13,6 +13,9 @@ dist-ssr
 *.local
 .env.development
 
+# Ignore auto-generated API types
+src/types/generated/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
