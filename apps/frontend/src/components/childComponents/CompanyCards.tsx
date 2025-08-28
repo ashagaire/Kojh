@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGetAllCompanies } from "../../hooks/api/useGetAllCompanies";
+import { useGetAllCompanies } from "../../hooks/useGetAllCompanies";
 import { CompanyResponse } from "../../hooks/api/company";
 import CustomPagination from "../common/pagination";
 

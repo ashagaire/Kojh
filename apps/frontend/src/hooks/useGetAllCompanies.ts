@@ -1,9 +1,9 @@
 // src/hooks/useGetAllCompanies.ts
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { getAllCompanies, PaginatedCompanyResponse } from "../api/company";
-import { usePagination } from "../usePagination";
-import { QUERY_KEYS } from "../../utils/queryKeys";
+import { getAllCompanies, PaginatedCompanyResponse } from "./api/company";
+import { usePagination } from "./usePagination";
+import { QUERY_KEYS } from "../utils/queryKeys";
 
 export function useGetAllCompanies(search: string) {
   const pagination = usePagination();
