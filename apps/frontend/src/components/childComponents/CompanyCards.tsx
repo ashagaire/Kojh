@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useGetAllCompanies } from "../../hooks/useGetAllCompanies";
-import { CompanyResponse } from "../../hooks/api/company";
 import CustomPagination from "../common/pagination";
+import { CompanyResponse } from "../../types/generated/typesApi";
 
 export default function CompanyCards() {
   // Create an array with 9 elements
@@ -24,9 +24,9 @@ export default function CompanyCards() {
         placeholder="Search companies..."
         onChange={(e) => setSearch(e.target.value)}
       />
-
+      {data.companies?.length === 0 && <p>No companies listed yet.</p>}
       <ul>
-        {data?.companies.map((company: CompanyResponse) => (
+        {data.companies?.map((company: CompanyResponse) => (
           <li key={company.id}>
             <strong>{company.name}</strong> - {company.accountType} -{" "}
             {company.mainAddress}

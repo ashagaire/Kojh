@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate:api": "nswag openapi2tsclient /input:https://localhost:7098/swagger/v1/swagger.json /output:src/types/generated/ClientApi.ts /template:Axios /generateClientInterfaces:true /generateDtoTypes:true /typeStyle:Interface"
+    "generate:api": "npx nswag run nswag.json"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -23,7 +23,8 @@
     "react-country-flag": "^3.1.0",
     "react-dom": "^19.1.1",
     "react-i18next": "^15.7.2",
-    "react-router-dom": "^6.30.1"
+    "react-router-dom": "^6.30.1",
+    "swagger-typescript-api": "^13.2.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
